@@ -2,6 +2,7 @@ package com.yoyo.googleplay.ui.widget;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.yoyo.googleplay.R;
@@ -102,12 +103,20 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     /**
-     * 加载数据为空布局对象
+     * 加载失败布局对象
      *
      * @return
      */
     public View onCreateErrorView() {
-        return UIUtils.inflate(R.layout.layout_error);
+        View view = UIUtils.inflate(R.layout.layout_error);
+        Button btnRetry = (Button) view.findViewById(R.id.btn_retry);
+        btnRetry.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadData();
+            }
+        });
+        return view;
     }
 
     /**
