@@ -53,6 +53,8 @@ public class HomeFragment extends BaseFragment {
         public BaseHolder<String> getHolder(int position) {
             return new HomeHolder();
         }
+
+
     }
 
 }

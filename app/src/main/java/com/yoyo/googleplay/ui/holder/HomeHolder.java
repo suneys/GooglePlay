@@ -19,6 +19,8 @@ public class HomeHolder extends BaseHolder<String> {
         return view;
     }
 
+
+
     @Override
     public void refreshView(String data) {
         tvContent.setText(data);
