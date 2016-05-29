@@ -25,13 +25,12 @@ import java.util.List;
  */
 public class HomeFragment extends BaseFragment {
 
-    ArrayList<String> mList = new ArrayList<>();
     ArrayList<AppInfo> mAppData = new ArrayList<>();
+    private HomeProtocol homeProtocol;
 
     @Override
     public View onCreateSuccessView() {
         ListView listView = new ListView(UIUtils.getContext());
-        initData();
         HomeAdapter homeAdapter = new HomeAdapter(mAppData);
         listView.setAdapter(homeAdapter);
         return listView;
@@ -39,17 +38,12 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public LoadingPage.ResultState onLoad() {
-        HomeProtocol homeProtocol = new HomeProtocol();
+        homeProtocol = new HomeProtocol();
         mAppData = homeProtocol.getData(0);
 
         return checkData(mAppData);
     }
 
-    void initData() {
-        for (int i = 0; i < 20; i++) {
-            mList.add("测试数据" + i);
-        }
-    }
 
     class HomeAdapter extends MyBaseAdapter<AppInfo> {
 
@@ -59,12 +53,9 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public List<AppInfo> onLoadMoreData() {
-            List<String> moreData = new ArrayList<String>();
-            for(int i = 0; i < 20; i++){
-                moreData.add(i,"更多数据"+i);
-            }
-            SystemClock.sleep(2000);
-            return null;
+            List<AppInfo> moreData;
+            moreData = homeProtocol.getData(mAppData.size());
+            return moreData;
         }
 
         @Override
