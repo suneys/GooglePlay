@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import com.yoyo.googleplay.ui.widget.LoadingPage;
 import com.yoyo.googleplay.utils.UIUtils;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -47,5 +50,20 @@ public abstract class BaseFragment extends Fragment {
         if(mLoadingPage != null){
             mLoadingPage.loadData();
         }
+    }
+
+    public LoadingPage.ResultState checkData(Object obj){
+        if (obj != null){
+            if (obj instanceof ArrayList){
+                ArrayList list = (ArrayList) obj;
+                if (!list.isEmpty()){
+                    return LoadingPage.ResultState.LOAD_SUCCESS;
+                }else{
+                    return LoadingPage.ResultState.LOAD_EMPTY;
+                }
+            }
+        }
+
+        return LoadingPage.ResultState.LOAD_ERROR;
     }
 }

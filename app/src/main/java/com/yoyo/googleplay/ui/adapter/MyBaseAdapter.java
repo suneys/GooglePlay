@@ -10,6 +10,7 @@ import com.yoyo.googleplay.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Administrator on 2016/5/21 0021.
@@ -122,4 +123,6 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     }
 
     public abstract BaseHolder<T> getHolder(int position);
+
+
 }
